@@ -52,7 +52,7 @@ void ofApp::setup(){
 	//initialize the variable so it's off at the beginning
     usecamera = false;
     light.enable(); //Enable lighting
-   
+
 }
 
 //--------------------------------------------------------------
@@ -70,8 +70,9 @@ void ofApp::update(){
         center = sumOfAllPoints / points.size();
         camera.setPosition(mouseX,mouseY,0);
         camera.lookAt(ofVec3f(mouseX,mouseY,0));
-//         light.setPosition(ofVec3f(mouseX,mouseY,0));
+
         
+        light.setPosition(ofVec3f(mouseX,mouseY,0));
     }
 }
 
@@ -83,14 +84,9 @@ void ofApp::draw(){
     ofBackgroundGradient( ofColor( 0 ), ofColor( 128 ) );
 	//if we're using the camera, start it.
 	//everything that you draw between begin()/end() shows up from the view of the camera
-//    if(usecamera){
-        camera.begin();
-//    }
-    
+    camera.begin();
     ofMesh mesh;
-//	mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
     for(unsigned int i = 1; i < points.size(); i++){
-//        ofCircle(points[i],10);
         ofVec3f thisPoint = points[i-1];
 		ofVec3f nextPoint = points[i];
         addCircle(thisPoint , nextPoint, mesh);
@@ -103,10 +99,9 @@ void ofApp::draw(){
     {
         mesh.drawWireframe();
     }
-	//if we're using the camera, take it away
-//    if(usecamera){
-    	camera.end();
-//    }
+    camera.end();
+    ofSetColor(255);
+    ofDrawBitmapString("'c' toggle camera \n 'm' toggle wireframe", ofPoint(20,20));
     
 }
 
