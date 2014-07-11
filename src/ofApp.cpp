@@ -117,6 +117,10 @@ void ofApp::keyPressed(int key){
     {
         drawMode = !drawMode;
     }
+    if(key == ' ')
+    {
+        ofSaveFrame();
+    }
 }
 
 //--------------------------------------------------------------
