@@ -26,6 +26,6 @@ public:
 	
 	//if usecamera is true, we'll turn on the camera view
     bool usecamera;
-    void addCircle(ofVec3f thisPoint, ofVec3f nextPoint, ofMesh &mesh );
+    void addCircle(ofVec3f nextPoint, ofMesh &mesh );
     ofLight light; //Light
 };

@@ -39,7 +39,7 @@ void setNormals( ofMesh &mesh ){
 }
 float Rad = 1000; //Radius of circle
 float circleStep = 3; //Step size for circle motion
-int circleN = 4; //Number of points on the circle
+int circleN = 20; //Number of points on the circle
 
 ofPoint axeX, axyY, axyZ; //Circle's coordinate system
 //--------------------------------------------------------------
@@ -87,9 +87,8 @@ void ofApp::draw(){
     camera.begin();
     ofMesh mesh;
     for(unsigned int i = 1; i < points.size(); i++){
-        ofVec3f thisPoint = points[i-1];
 		ofVec3f nextPoint = points[i];
-        addCircle(thisPoint , nextPoint, mesh);
+        addCircle(nextPoint, mesh);
     }
     if(drawMode)
     {
@@ -183,8 +182,9 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
     
 }
 
-
-void ofApp::addCircle(ofVec3f thisPoint, ofVec3f nextPoint, ofMesh &mesh ){
+//http://www.packtpub.com/sites/default/files/9781849518048_Chapter_07.pdf
+//knotExample
+void ofApp::addCircle( ofVec3f nextPoint, ofMesh &mesh ){
     float time = ofGetElapsedTimef();    //Time
     //Parameters – twisting and rotating angles and color
 
